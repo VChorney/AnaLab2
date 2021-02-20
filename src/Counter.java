@@ -7,12 +7,12 @@ class Counter {
   private Object lock2 = new Object();
 
   public void increment() throws InterruptedException {
-
+    synchronized (lock1){
       int a;
       a = c;
       a++;
       c = a;
-
+    }
   }
 
   public void decrement() throws InterruptedException {
