@@ -1,6 +1,10 @@
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class CounterDecrementThread extends Thread {
 
   private Counter counter;
+  private ReentrantLock lock = new ReentrantLock();
 
   public CounterDecrementThread(Counter counter) {
     this.counter = counter;
@@ -8,10 +12,13 @@ public class CounterDecrementThread extends Thread {
 
   public void run() {
     try {
+      lock.tryLock(10, TimeUnit.SECONDS);
       counter.decrement();
       System.out.println(counter.value());
     } catch (InterruptedException e) {
       e.printStackTrace();
+    } finally {
+      lock.unlock();
     }
   }
 }
