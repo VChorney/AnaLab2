@@ -1,4 +1,4 @@
-import static java.lang.Thread.sleep;
+
 
 class Counter {
 

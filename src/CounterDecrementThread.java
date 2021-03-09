@@ -1,6 +1,6 @@
 public class CounterDecrementThread extends Thread {
 
-  private Counter counter;
+  private final Counter counter;
 
   public CounterDecrementThread(Counter counter) {
     this.counter = counter;
